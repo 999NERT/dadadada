@@ -1,0 +1,140 @@
+{
+  "kodRabatowy": "ANGELKA",
+  "rabatProcent": 5,
+  "zestawy": [
+    {
+      "id": "8k",
+      "nazwa": "ZESTAW PC 8K CS2",
+      "eyebrow": "WYDAJNY ZESTAW",
+      "skrot": "Ryzen 7 9800X3D • RTX 5070 12GB • 16GB DDR5",
+      "kolor": "#ff1493",
+      "konfiguratorLink": "https://www.komputronik.pl/customer/advanced-configurator/X9d1JjLQ7q-vGdw8nol7D/summary",
+      "komponenty": [
+        {
+          "kategoria": "cpu",
+          "etykieta": "Procesor",
+          "nazwa": "AMD Ryzen 7 9800X3D tray",
+          "link": "https://www.komputronik.pl/product/964264/procesor-amd-ryzen-7-9800x3d-tray.html",
+          "cena": 1656.43
+        },
+        {
+          "kategoria": "gpu",
+          "etykieta": "Karta graficzna",
+          "nazwa": "ASUS GeForce RTX 5070 DUAL OC 12GB DLSS 4",
+          "link": "https://www.komputronik.pl/product/970363/karta-graficzna-asus-geforce-rtx-5070-dual-oc-12gb-dlss-4.html",
+          "cena": 2749
+        },
+        {
+          "kategoria": "motherboard",
+          "etykieta": "Płyta główna",
+          "nazwa": "Gigabyte B850 EAGLE WIFI6E",
+          "link": "https://www.komputronik.pl/product/948054/plyta-glowna-gigabyte-b850-eagle-wifi6e.html",
+          "cena": 759
+        },
+        {
+          "kategoria": "ram",
+          "etykieta": "Pamięć RAM",
+          "nazwa": "GOODRAM IRDM 16GB [1x16GB 5600MHz DDR5 CL36 DIMM]",
+          "link": "https://www.komputronik.pl/product/1016767/goodram-irdm-16gb-1x16gb-5600mhz-ddr5-cl36-dimm-.html",
+          "cena": 849
+        },
+        {
+          "kategoria": "storage",
+          "etykieta": "Dysk SSD",
+          "nazwa": "WD Black SN850X M.2 PCIe NVMe 1TB with Heatsink",
+          "link": "https://www.komputronik.pl/product/778901/wd-black-sn850x-m-2-pcie-nvme-1tb-with-heatsink.html",
+          "cena": 849
+        },
+        {
+          "kategoria": "psu",
+          "etykieta": "Zasilacz",
+          "nazwa": "MSI MAG A850GL PCIE5 II",
+          "link": "https://www.komputronik.pl/product/960113/zasilacz-pc-msi-mag-a850gl-pcie5-ii.html",
+          "cena": 369
+        },
+        {
+          "kategoria": "case",
+          "etykieta": "Obudowa",
+          "nazwa": "ENDORFY Arx 700 ARGB",
+          "link": "https://www.komputronik.pl/product/828290/endorfy-arx-700-argb.html",
+          "cena": 359
+        },
+        {
+          "kategoria": "cooling",
+          "etykieta": "Chłodzenie",
+          "nazwa": "ENDORFY Navis F360 ARGB",
+          "link": "https://www.komputronik.pl/product/815412/endorfy-navis-f360-argb.html",
+          "cena": 299
+        }
+      ]
+    },
+    {
+      "id": "6k",
+      "nazwa": "ZESTAW PC 6K CS2",
+      "eyebrow": "ZESTAW W DOBREJ CENIE",
+      "skrot": "Ryzen 7 9800X3D • RTX 5060 Ti 8GB • 16GB DDR5",
+      "kolor": "#ff1493",
+      "konfiguratorLink": "https://www.komputronik.pl/customer/advanced-configurator/X9d1JjLQ7q-Y2pNDL5g70/summary",
+      "komponenty": [
+        {
+          "kategoria": "cpu",
+          "etykieta": "Procesor",
+          "nazwa": "AMD Ryzen 7 9800X3D tray",
+          "link": "https://www.komputronik.pl/product/964264/procesor-amd-ryzen-7-9800x3d-tray.html",
+          "cena": 1656.43
+        },
+        {
+          "kategoria": "gpu",
+          "etykieta": "Karta graficzna",
+          "nazwa": "ASUS GeForce RTX 5060 Ti DUAL OC 8GB DLSS 4",
+          "link": "https://www.komputronik.pl/product/964504/karta-graficzna-asus-geforce-rtx-5060-ti-dual-oc-8gb-dlss-4.html",
+          "cena": 1449
+        },
+        {
+          "kategoria": "motherboard",
+          "etykieta": "Płyta główna",
+          "nazwa": "Gigabyte B850M FORCE [oferta Outlet]",
+          "link": "https://www.komputronik.pl/product/1015887/plyta-glowna-gigabyte-b850m-force-oferta-outlet-.html",
+          "cena": 526.58,
+          "cenaBazowa": 559,
+          "promocja": true
+        },
+        {
+          "kategoria": "ram",
+          "etykieta": "Pamięć RAM",
+          "nazwa": "GOODRAM IRDM 16GB [1x16GB 5600MHz DDR5 CL36 DIMM]",
+          "link": "https://www.komputronik.pl/product/1016767/goodram-irdm-16gb-1x16gb-5600mhz-ddr5-cl36-dimm-.html",
+          "cena": 849
+        },
+        {
+          "kategoria": "storage",
+          "etykieta": "Dysk SSD",
+          "nazwa": "Lexar NQ790 Pci-e NVMe 512GB",
+          "link": "https://www.komputronik.pl/product/1011483/dysk-lexar-nq790-pci-e-nvme-512gb.html",
+          "cena": 539
+        },
+        {
+          "kategoria": "psu",
+          "etykieta": "Zasilacz",
+          "nazwa": "MSI MAG A850GL PCIE5 II",
+          "link": "https://www.komputronik.pl/product/960113/zasilacz-pc-msi-mag-a850gl-pcie5-ii.html",
+          "cena": 369
+        },
+        {
+          "kategoria": "case",
+          "etykieta": "Obudowa",
+          "nazwa": "ENDORFY Arx 700 ARGB",
+          "link": "https://www.komputronik.pl/product/828290/endorfy-arx-700-argb.html",
+          "cena": 359
+        },
+        {
+          "kategoria": "cooling",
+          "etykieta": "Chłodzenie",
+          "nazwa": "ENDORFY Navis F360 ARGB",
+          "link": "https://www.komputronik.pl/product/815412/endorfy-navis-f360-argb.html",
+          "cena": 299
+        }
+      ]
+    }
+  ]
+}

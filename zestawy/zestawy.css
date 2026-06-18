@@ -1,0 +1,624 @@
+/* ========================================================
+   ZESTAWY PC — style dopasowane do style.css (ANGELKACS)
+   ======================================================== */
+
+.zestawy-page {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 20px 15px 60px;
+    position: relative;
+    z-index: 1;
+}
+
+/* === GORNY PASEK Z POWROTEM === */
+.zestawy-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0 10px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.zestawy-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #ccccff;
+    text-decoration: none;
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid #333344;
+    background: rgba(30, 30, 45, 0.6);
+    transition: all 0.25s ease;
+}
+
+.zestawy-back:hover {
+    border-color: #ff1493;
+    color: #fff;
+    transform: translateX(-3px);
+}
+
+/* === NAGLOWEK STRONY === */
+.zestawy-hero {
+    text-align: center;
+    margin: 10px 0 30px;
+}
+
+.zestawy-eyebrow {
+    display: inline-block;
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    color: #ff1493;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.zestawy-title {
+    font-family: 'Paytone One', sans-serif;
+    font-size: 2.4rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 14px;
+    text-shadow: 0 0 20px rgba(255, 20, 147, 0.25);
+}
+
+.zestawy-title span {
+    color: #ff1493;
+}
+
+.zestawy-lead {
+    max-width: 620px;
+    margin: 0 auto;
+    color: #aaaacc;
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 1.02rem;
+    line-height: 1.6;
+}
+
+/* === BANER KODU RABATOWEGO === */
+.zestawy-code-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    background: linear-gradient(135deg, rgba(255, 20, 147, 0.12), rgba(255, 0, 102, 0.06));
+    border: 1px solid rgba(255, 20, 147, 0.35);
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin: 26px 0 36px;
+}
+
+.zestawy-code-banner-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.zestawy-code-banner-left i {
+    font-size: 1.6rem;
+    color: #ff1493;
+}
+
+.zestawy-code-banner-text strong {
+    display: block;
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 700;
+    color: #fff;
+    font-size: 1.02rem;
+}
+
+.zestawy-code-banner-text span {
+    display: block;
+    color: #aaaacc;
+    font-size: 0.88rem;
+    margin-top: 2px;
+}
+
+.zestawy-code-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 20, 147, 0.4);
+    border-radius: 10px;
+    padding: 8px 8px 8px 16px;
+}
+
+.zestawy-code-pill .code-text {
+    font-family: 'Paytone One', sans-serif;
+    color: #ff1493;
+    letter-spacing: 2px;
+    font-size: 1.1rem;
+}
+
+.zestawy-copy-btn {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 9px 14px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+
+.zestawy-copy-btn:hover {
+    background: #ff1493;
+    border-color: #ff1493;
+}
+
+.zestawy-copy-btn.copied {
+    background: #2ecc71;
+    border-color: #2ecc71;
+}
+
+/* === LISTA KART ZESTAWOW === */
+.zestawy-list {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.zestaw-card {
+    background: rgba(20, 20, 30, 0.85);
+    border: 1px solid #2a2a3a;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.zestaw-card.open {
+    border-color: rgba(255, 20, 147, 0.45);
+    box-shadow: 0 10px 30px rgba(255, 20, 147, 0.12);
+}
+
+/* --- naglowek karty (klikalny) --- */
+.zestaw-header {
+    width: 100%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 22px 24px;
+    text-align: left;
+    color: inherit;
+    font: inherit;
+    flex-wrap: wrap;
+}
+
+.zestaw-header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 240px;
+}
+
+.zestaw-icon-wrap {
+    width: 54px;
+    height: 54px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: rgba(255, 20, 147, 0.1);
+    border: 1px solid rgba(255, 20, 147, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ff1493;
+}
+
+.zestaw-icon-wrap svg {
+    width: 28px;
+    height: 28px;
+}
+
+.zestaw-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.zestaw-eyebrow-mini {
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 700;
+    font-size: 0.68rem;
+    letter-spacing: 1.5px;
+    color: #ff1493;
+    text-transform: uppercase;
+}
+
+.zestaw-name {
+    font-family: 'Paytone One', sans-serif;
+    font-size: 1.4rem;
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+
+.zestaw-specs-mini {
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 0.85rem;
+    color: #9999b8;
+}
+
+.zestaw-header-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.zestaw-price-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+}
+
+.zestaw-price-normal {
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 0.85rem;
+    color: #777799;
+    text-decoration: line-through;
+}
+
+.zestaw-price-discount {
+    font-family: 'Paytone One', sans-serif;
+    font-size: 1.5rem;
+    color: #ff1493;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+}
+
+.zestaw-price-discount small {
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 0.62rem;
+    color: #2ecc71;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.zestaw-chevron {
+    color: #ff1493;
+    font-size: 1.1rem;
+    transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.zestaw-card.open .zestaw-chevron {
+    transform: rotate(180deg);
+}
+
+/* --- panel rozwijany "jak zwoj" --- */
+.zestaw-scroll-wrap {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.zestaw-unroll-bar {
+    height: 3px;
+    width: 0%;
+    margin: 0 24px;
+    background: linear-gradient(90deg, #ff1493, #ff0066);
+    border-radius: 3px;
+    transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.05s;
+}
+
+.zestaw-card.open .zestaw-unroll-bar {
+    width: calc(100% - 48px);
+}
+
+.zestaw-scroll-inner {
+    padding: 6px 24px 24px;
+    opacity: 0;
+    transform: scaleY(0.92);
+    transform-origin: top;
+    transition: opacity 0.4s ease 0.1s, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.1s;
+}
+
+.zestaw-card.open .zestaw-scroll-inner {
+    opacity: 1;
+    transform: scaleY(1);
+}
+
+/* --- lista podzespolow --- */
+.zestaw-components-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 18px 0 20px;
+}
+
+.zestaw-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    padding: 12px 14px;
+    flex-wrap: wrap;
+}
+
+.zestaw-row-icon {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ff1493;
+}
+
+.zestaw-row-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.zestaw-row-info {
+    flex: 1 1 220px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.zestaw-row-cat {
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 0.7rem;
+    color: #777799;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 600;
+}
+
+.zestaw-row-name {
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #e8e8f5;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.zestaw-row-name:hover {
+    color: #ff1493;
+}
+
+.zestaw-promo-tag {
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 0.62rem;
+    font-weight: 800;
+    color: #2ecc71;
+    border: 1px solid #2ecc71;
+    border-radius: 4px;
+    padding: 1px 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
+}
+
+.zestaw-row-prices {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-left: auto;
+}
+
+.zestaw-row-price-normal {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.zestaw-row-price-normal .label {
+    font-size: 0.62rem;
+    color: #777799;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.zestaw-row-price-normal .value {
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 600;
+    color: #aaaacc;
+    font-size: 0.92rem;
+    text-decoration: line-through;
+    text-decoration-color: #555570;
+}
+
+.zestaw-row-price-discount {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    min-width: 92px;
+}
+
+.zestaw-row-price-discount .label {
+    font-size: 0.62rem;
+    color: #2ecc71;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+}
+
+.zestaw-row-price-discount .value {
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 800;
+    color: #fff;
+    font-size: 1.02rem;
+}
+
+/* --- podsumowanie --- */
+.zestaw-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px dashed rgba(255, 20, 147, 0.3);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-bottom: 18px;
+}
+
+.zestaw-summary-line {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.zestaw-summary-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 0.9rem;
+    color: #ccccdd;
+}
+
+.zestaw-summary-row .total-normal {
+    text-decoration: line-through;
+    color: #777799;
+}
+
+.zestaw-summary-row .total-discount {
+    font-family: 'Paytone One', sans-serif;
+    font-size: 1.3rem;
+    color: #ff1493;
+}
+
+.zestaw-summary-savings {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #2ecc71;
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    background: rgba(46, 204, 113, 0.08);
+    border: 1px solid rgba(46, 204, 113, 0.3);
+    border-radius: 7px;
+    padding: 5px 10px;
+    align-self: flex-start;
+}
+
+.zestaw-buy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #ff1493, #ff0066);
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 12px 18px;
+    border-radius: 9px;
+    white-space: nowrap;
+    transition: all 0.25s ease;
+    box-shadow: 0 6px 16px rgba(255, 20, 147, 0.3);
+}
+
+.zestaw-buy-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(255, 20, 147, 0.4);
+}
+
+.zestaw-howto {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: #9999b8;
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    margin-top: 4px;
+}
+
+.zestaw-howto i {
+    color: #ff1493;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+/* === RESPONSYWNOSC === */
+@media (max-width: 700px) {
+    .zestaw-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .zestaw-header-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .zestaw-price-block {
+        align-items: flex-start;
+    }
+
+    .zestaw-row {
+        gap: 10px;
+    }
+
+    .zestaw-row-prices {
+        margin-left: 52px;
+        gap: 18px;
+    }
+
+    .zestawy-code-banner {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .zestawy-code-pill {
+        justify-content: space-between;
+    }
+
+    .zestaw-summary {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .zestaw-buy-btn {
+        justify-content: center;
+    }
+
+    .zestawy-title {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .zestaw-row-prices {
+        margin-left: 0;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .zestaw-row-price-normal,
+    .zestaw-row-price-discount {
+        align-items: flex-start;
+    }
+}

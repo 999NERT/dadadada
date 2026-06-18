@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANGELKACS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700;900&family=Paytone+One&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="giveaway.css">
+    <link rel="icon" type="image/png" href="images/angelka.png">
+    <style>
+        /* Przycisk KONKURSY */
+        .konkursy-btn {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            border-color: #27ae60;
+        }
+        .konkursy-btn:hover {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(46, 204, 113, 0.35);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loadingScreen">
+        <div class="loading-container">
+            <div class="loading-logo">
+                <span class="logo-text">ANGELKACS</span>
+                <div class="loading-spinner">
+                    <div class="spinner-dot"></div>
+                    <div class="spinner-dot"></div>
+                    <div class="spinner-dot"></div>
+                </div>
+            </div>
+            <div class="loading-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <span class="loading-text">Ladowanie strony...</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="background-overlay"></div>
+
+    <div class="main-container">
+
+        <section class="top-actions-section">
+            <div class="actions-grid">
+                <a href="https://angelkacs.pl/mecze" class="action-card mecze-btn" target="_blank">
+                    <i class="fas fa-trophy action-icon"></i>
+                    <span class="action-text">MECZE</span>
+                </a>
+                <a href="https://angelkacs.pl/gv" class="action-card konkursy-btn" target="_blank">
+                    <i class="fas fa-gift action-icon"></i>
+                    <span class="action-text">KONKURSY</span>
+                </a>
+                <a href="https://angelkacs.pl/donate" class="action-card donate-btn" target="_blank">
+                    <i class="fas fa-heart action-icon"></i>
+                    <span class="action-text">DONATE</span>
+                </a>
+                <a href="https://angelkacs.pl/setup" class="action-card ustawienia-btn" target="_blank">
+                    <i class="fas fa-cog action-icon"></i>
+                    <span class="action-text">USTAWIENIA</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="partners-section">
+            <h2 class="section-title">PARTNERZY</h2>
+            <div class="partners-grid" id="partnersContainer"></div>
+        </section>
+
+        <section id="giveawaySection">
+            <div class="gw-banner">
+                <div class="gw-banner-left">
+                    <span class="gw-live-pill">
+                        <span class="gw-live-dot"></span>
+                        aktywne
+                    </span>
+                    <h2 class="gw-main-title" id="gwMainTitle">GIVEAWAY <span>ANGELKACS</span></h2>
+                    <p class="gw-subtitle" id="gwSubtitle"></p>
+                </div>
+                <div class="gw-banner-right">
+                    <span class="gw-age-pill">
+                        <i class="fas fa-shield-alt"></i>
+                        TYLKO DLA OSOB PELNO&shy;LETNICH +18
+                    </span>
+                </div>
+            </div>
+
+            <div class="gw-stage">
+                <div class="gw-carousel-wrap">
+                    <div class="gw-carousel-viewport" id="gwViewport">
+                        <div class="gw-carousel-track" id="gwTrack"></div>
+                    </div>
+                </div>
+
+                <div class="gw-controls hidden" id="gwControls">
+                    <div class="gw-trackbar">
+                        <div class="gw-trackbar-fill" id="gwTrackFill"></div>
+                    </div>
+                    <span class="gw-counter" id="gwCounter"><em>1</em> / 1</span>
+                    <div class="gw-arrows">
+                        <button class="gw-arrow disabled" id="gwArrowL" onclick="gwSlide(-1)" aria-label="Poprzedni">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="gw-arrow" id="gwArrowR" onclick="gwSlide(1)" aria-label="Nastepny">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="gw-join-wrap">
+                    <a href="#" class="gw-join-btn" id="gwJoinBtn" target="_blank">
+                        <i class="fas fa-arrow-right"></i>
+                        <span class="gw-join-label">BIORE UDZIAL</span>
+                    </a>
+                    <span class="gw-join-note">Sprawdz zasady na Discordzie</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="youtube-section">
+            <div class="youtube-header">
+                <h2 class="section-title-left">NAJNOWSZY FILM</h2>
+                <div class="social-container">
+                    <a href="https://www.instagram.com/angelkacs" class="social-link" target="_blank">
+                        <img src="images/1instagram.png" alt="Instagram" class="social-img">
+                    </a>
+                    <a href="https://x.com/angelkaacs" class="social-link" target="_blank">
+                        <img src="images/1x.png" alt="X" class="social-img">
+                    </a>
+                    <a href="https://www.youtube.com/@angelkacs" class="social-link" target="_blank">
+                        <img src="images/ytclick.png" alt="YouTube" class="social-img">
+                    </a>
+                    <a href="https://www.tiktok.com/@angelkacs2" class="social-link" target="_blank">
+                        <img src="images/1tiktok.png" alt="TikTok" class="social-img">
+                    </a>
+                    <a href="https://www.facebook.com/angelkacs" class="social-link" target="_blank">
+                        <img src="images/1facebook.png" alt="Facebook" class="social-img">
+                    </a>
+                </div>
+            </div>
+            <div class="video-container">
+                <div class="video-loader" id="videoLoader">
+                    <div class="loader-spinner"></div>
+                    <p class="loading-info">Pobieranie najnowszego filmu...</p>
+                </div>
+                <div class="video-wrapper" id="videoWrapper">
+                    <img id="videoThumbnail" class="video-thumbnail" alt="Miniaturka filmu">
+                    <div class="video-overlay">
+                        <a id="watchButton" class="watch-button" href="#" target="_blank">
+                            <div class="play-icon"><i class="fas fa-play"></i></div>
+                            <span>OBEJRZYJ TERAZ</span>
+                        </a>
+                    </div>
+                    <div id="videoError" class="video-error">
+                        <div class="error-content">
+                            <i class="fas fa-exclamation-triangle error-icon"></i>
+                            <p>Nie mozna zaladowac filmu</p>
+                            <button id="retryButton" class="retry-btn">
+                                <i class="fas fa-redo"></i> Sprobuj ponownie
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stream-section">
+            <div class="stream-grid">
+                <a href="https://www.twitch.tv/angelkacs" class="stream-card" target="_blank" id="twitchCard">
+                    <img src="images/1twitch.png" alt="Twitch" class="stream-img">
+                    <div class="status-indicator" id="twitchStatus">
+                        <span class="status-dot"></span>
+                        <span class="status-text">SPRAWDZAM...</span>
+                    </div>
+                    <div class="live-badge">LIVE</div>
+                </a>
+                <a href="https://kick.com/angelkacs" class="stream-card" target="_blank" id="kickCard">
+                    <img src="images/1KOPNIAK.png" alt="Kick" class="stream-img">
+                    <div class="status-indicator" id="kickStatus">
+                        <span class="status-dot"></span>
+                        <span class="status-text">SPRAWDZAM...</span>
+                    </div>
+                    <div class="live-badge">LIVE</div>
+                </a>
+                <a href="https://discord.gg/rKGKQbuBxm" class="stream-card" target="_blank" id="discordCard">
+                    <img src="images/1discord.png" alt="Discord" class="stream-img">
+                    <div class="status-indicator" id="discordStatus">
+                        <span class="status-dot join-dot"></span>
+                        <span class="status-text">DOLACZ</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <footer class="site-footer">
+            <div class="footer-content">
+                <p>@ <span id="currentYear"></span> ANGELKACS Wszelkie prawa zastrzezone</p>
+                <p>Wspolpraca: <a href="mailto:angelka@stormmedia.gg">angelka@stormmedia.gg</a></p>
+                <p>Graj odpowiedzialnie. Ta strona zawiera linki do zewnetrznych serwisow. Korzystanie z nich odbywa sie na wlasna odpowiedzialnosc i powinno byc zgodne z prawem w Twoim kraju.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- MODAL PARTNEROW -->
+    <div class="partner-modal-overlay" id="partnerModalOverlay">
+        <div class="partner-modal" id="partnerModal">
+            <button class="modal-close-btn" id="modalCloseBtn">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <div class="modal-title-wrapper">
+                    <div class="modal-icon" id="modalIcon"><i class="fas fa-star"></i></div>
+                    <div><h3 class="modal-title" id="modalTitle"></h3></div>
+                </div>
+                <div class="modal-badge" id="modalBadge"></div>
+            </div>
+            <div class="modal-content">
+                <div class="modal-description-wrapper">
+                    <div class="modal-description" id="modalDescription"></div>
+                </div>
+                <div class="modal-code-section" id="modalCodeSection">
+                    <div class="code-label">
+                        <i class="fas fa-gift"></i>
+                        <span>ODBIERZ BONUS</span>
+                    </div>
+                    <div class="code-display">
+                        <div class="code-value" id="modalCode"></div>
+                        <button class="copy-code-btn" id="copyCodeBtn">
+                            <i class="far fa-copy"></i>
+                            <span>Kopiuj</span>
+                        </button>
+                    </div>
+                    <div class="code-copied-msg" id="codeCopiedMsg">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Bonus skopiowany!</span>
+                    </div>
+                </div>
+                <div class="modal-giveaway" id="modalGiveaway">
+                    <div class="giveaway-info">
+                        <i class="fas fa-gift"></i>
+                        <div>
+                            <strong>Konkurs trwa!</strong>
+                            <span>Po wiecej informacji dolacz na nasz Discord</span>
+                        </div>
+                    </div>
+                    <a href="https://discord.gg/rKGKQbuBxm" class="modal-btn giveaway-discord-btn" target="_blank">
+                        <i class="fab fa-discord"></i>
+                        <span>Dolacz na Discord</span>
+                    </a>
+                </div>
+                <div class="modal-actions">
+                    <a href="#" class="modal-btn partner-btn" id="modalPartnerLink" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Przejdz do strony</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="refresh-streams-btn" id="refreshStreamsBtn" title="Odswiez statusy streamow">
+        <i class="fas fa-sync-alt"></i>
+    </button>
+
+    <script src="script.js"></script>
+    <script src="modal.js"></script>
+    <script src="giveaway.js"></script>
+</body>
+</html>

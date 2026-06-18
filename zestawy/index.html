@@ -1,1 +1,463 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zestawy PC — ANGELKACS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700;900&family=Paytone+One&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="zestawy.css">
+    <link rel="icon" type="image/png" href="images/angelka.png">
+</head>
+<body>
 
+    <!-- EKRAN LADOWANIA -->
+    <div id="loadingScreen">
+        <div class="loading-container">
+            <div class="loading-logo">
+                <span class="logo-text">ANGELKACS</span>
+                <div class="loading-spinner">
+                    <div class="spinner-dot"></div>
+                    <div class="spinner-dot"></div>
+                    <div class="spinner-dot"></div>
+                </div>
+            </div>
+            <div class="loading-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <span class="loading-text">Ladowanie zestawow...</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="background-overlay"></div>
+
+    <div class="zestawy-page" id="mainContent" style="opacity:0; transition: opacity 0.5s ease;">
+
+        <!-- GORNY PASEK -->
+        <div class="zestawy-topbar">
+            <a href="/" class="zestawy-back">
+                <i class="fas fa-chevron-left"></i>
+                Wróc na strone glówna
+            </a>
+            <span style="font-family:'Paytone One',sans-serif; font-size:1rem; color:#555570; letter-spacing:1px;">ANGELKACS.PL</span>
+        </div>
+
+        <!-- HERO -->
+        <div class="zestawy-hero">
+            <span class="zestawy-eyebrow">REKOMENDOWANE PRZEZ ANGELKE</span>
+            <h1 class="zestawy-title">ZESTAWY <span>PC</span></h1>
+            <p class="zestawy-lead">
+                Sprawdzone konfiguracje do CS2 i nie tylko. Kazdy zestaw to kompromis cena/wydajnosc,
+                który polecam osobiscie. Uzyj kodu rabatowego przy zakupie i oszczedz extra!
+            </p>
+        </div>
+
+        <!-- BANER KODU RABATOWEGO -->
+        <div class="zestawy-code-banner" id="codeBanner" style="display:none;">
+            <div class="zestawy-code-banner-left">
+                <i class="fas fa-tags"></i>
+                <div class="zestawy-code-banner-text">
+                    <strong>Kod rabatowy na Komputronik</strong>
+                    <span id="bannerDiscount">Wpisz kod przy skladaniu zamówienia i zaoszczedz!</span>
+                </div>
+            </div>
+            <div class="zestawy-code-pill">
+                <span class="code-text" id="bannerCode">ANGELKA</span>
+                <button class="zestawy-copy-btn" id="copyBannerBtn">
+                    <i class="far fa-copy"></i>
+                    Kopiuj
+                </button>
+            </div>
+        </div>
+
+        <!-- LISTA ZESTAWOW — renderowana przez JS -->
+        <div class="zestawy-list" id="zestawyList">
+            <!-- karty generowane dynamicznie -->
+        </div>
+
+        <!-- STOPKA -->
+        <footer class="site-footer" style="margin-top:50px;">
+            <div class="footer-content">
+                <p>© <span id="currentYear"></span> ANGELKACS. Wszelkie prawa zastrzezone.</p>
+                <p>Wspólpraca: <a href="mailto:angelka@stormmedia.gg">angelka@stormmedia.gg</a></p>
+                <p>Ceny podane na stronie maja charakter informacyjny i moga ulec zmianie. Sprawdz aktualna cene w sklepie.</p>
+            </div>
+        </footer>
+
+    </div><!-- /.zestawy-page -->
+
+    <script>
+    // =====================================================================
+    //  IKONY SVG dla kategorii podzespolów
+    // =====================================================================
+    const ICONS = {
+        cpu: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="4" width="16" height="16" rx="2"/>
+                <rect x="9" y="9" width="6" height="6"/>
+                <line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/>
+                <line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/>
+                <line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/>
+                <line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/>
+              </svg>`,
+        gpu: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="6" width="22" height="12" rx="2"/>
+                <circle cx="7" cy="12" r="2"/><circle cx="13" cy="12" r="2"/>
+                <path d="M19 9v6"/><path d="M5 6V4"/><path d="M9 6V4"/><path d="M13 6V4"/>
+              </svg>`,
+        motherboard: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="2"/>
+                <rect x="6" y="6" width="5" height="5" rx="1"/>
+                <line x1="6" y1="14" x2="11" y2="14"/><line x1="6" y1="17" x2="11" y2="17"/>
+                <line x1="14" y1="6" x2="18" y2="6"/><line x1="14" y1="9" x2="18" y2="9"/>
+                <line x1="14" y1="14" x2="18" y2="14"/><line x1="14" y1="17" x2="18" y2="17"/>
+              </svg>`,
+        ram: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="5" width="18" height="14" rx="2"/>
+                <line x1="7" y1="5" x2="7" y2="19"/><line x1="11" y1="5" x2="11" y2="19"/>
+                <line x1="15" y1="5" x2="15" y2="19"/>
+                <path d="M3 10h18"/>
+              </svg>`,
+        storage: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="6" width="20" height="12" rx="2"/>
+                <circle cx="17" cy="12" r="1.5"/>
+                <path d="M6 9h5"/><path d="M6 12h3"/>
+              </svg>`,
+        psu: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+              </svg>`,
+        case: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="2" width="14" height="20" rx="2"/>
+                <line x1="21" y1="8" x2="17" y2="8"/><line x1="21" y1="12" x2="17" y2="12"/>
+                <rect x="6" y="5" width="5" height="4" rx="1"/>
+                <circle cx="8.5" cy="16" r="1.5"/>
+              </svg>`,
+        cooling: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"/>
+                <path d="M12 3c0 2.4 1.8 3.4 3 2.2C16.4 3.8 17 2 17 2s-.6 3-2 4c-1.4 1-3 .4-3 .4"/>
+                <path d="M21 12c-2.4 0-3.4 1.8-2.2 3 1.4 1.4 3.2 2 3.2 2s-3-.6-4-2c-1-1.4-.4-3-.4-3"/>
+                <path d="M12 21c0-2.4-1.8-3.4-3-2.2C7.6 20.2 7 22 7 22s.6-3 2-4c1.4-1 3-.4 3-.4"/>
+                <path d="M3 12c2.4 0 3.4-1.8 2.2-3C3.8 7.6 2 7 2 7s3 .6 4 2c1 1.4.4 3 .4 3"/>
+              </svg>`,
+    };
+
+    // =====================================================================
+    //  FORMATOWANIE CENY
+    // =====================================================================
+    function fmt(num) {
+        return num.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' zl';
+    }
+
+    // =====================================================================
+    //  OBLICZ SUMY DLA ZESTAWU
+    // =====================================================================
+    function calcTotals(zestaw, rabatProcent) {
+        let sumaCena = 0;
+        let sumaBazowa = 0;
+        zestaw.komponenty.forEach(k => {
+            sumaCena += k.cena;
+            sumaBazowa += k.cenaBazowa || k.cena;
+        });
+        const sumaRabat = sumaCena * (1 - rabatProcent / 100);
+        const oszczednosc = sumaCena - sumaRabat;
+        return { sumaCena, sumaBazowa, sumaRabat, oszczednosc };
+    }
+
+    // =====================================================================
+    //  BUDUJ KARTE ZESTAWU
+    // =====================================================================
+    function buildCard(zestaw, rabatProcent, idx) {
+        const t = calcTotals(zestaw, rabatProcent);
+        const hasKomputronikPromo = zestaw.komponenty.some(k => k.promocja);
+
+        // ikona karty (komputer)
+        const mainIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>`;
+
+        // wiersze komponentów
+        const rows = zestaw.komponenty.map(k => {
+            const icon = ICONS[k.kategoria] || ICONS.cpu;
+            const promoTag = k.promocja
+                ? `<span class="zestaw-promo-tag">Outlet</span>` : '';
+
+            // Czy jest cena bazowa (rózna od cena)?
+            const maPromoKomputronik = k.promocja && k.cenaBazowa && k.cenaBazowa !== k.cena;
+
+            // Cena po rabacie Angelki
+            const cenaPoRabacie = k.cena * (1 - rabatProcent / 100);
+
+            const priceCol = maPromoKomputronik
+                ? `<div class="zestaw-row-prices">
+                    <div class="zestaw-row-price-normal">
+                        <span class="label">Cena sklepowa</span>
+                        <span class="value">${fmt(k.cenaBazowa)}</span>
+                    </div>
+                    <div class="zestaw-row-price-discount">
+                        <span class="label">Z kodem</span>
+                        <span class="value">${fmt(cenaPoRabacie)}</span>
+                    </div>
+                  </div>`
+                : `<div class="zestaw-row-prices">
+                    <div class="zestaw-row-price-normal">
+                        <span class="label">Cena</span>
+                        <span class="value" style="text-decoration:none; color:#ccccdd;">${fmt(k.cena)}</span>
+                    </div>
+                    <div class="zestaw-row-price-discount">
+                        <span class="label">Z kodem</span>
+                        <span class="value">${fmt(cenaPoRabacie)}</span>
+                    </div>
+                  </div>`;
+
+            return `<div class="zestaw-row">
+                <div class="zestaw-row-icon">${icon}</div>
+                <div class="zestaw-row-info">
+                    <span class="zestaw-row-cat">${k.etykieta}</span>
+                    <a href="${k.link}" class="zestaw-row-name" target="_blank" rel="noopener"
+                       onclick="event.stopPropagation()">
+                        ${k.nazwa}${promoTag}
+                    </a>
+                </div>
+                ${priceCol}
+            </div>`;
+        }).join('');
+
+        // czy normalna cena (bez kodu) rózni sie od ceny bazowej (Komputronik promo)
+        const showNormalPrice = t.sumaBazowa > t.sumaCena;
+
+        const headerPriceLine = showNormalPrice
+            ? `<div class="zestaw-price-normal">${fmt(t.sumaBazowa)}</div>
+               <div class="zestaw-price-discount">${fmt(t.sumaRabat)} <small>-${rabatProcent}% KOD</small></div>`
+            : `<div class="zestaw-price-normal">${fmt(t.sumaCena)}</div>
+               <div class="zestaw-price-discount">${fmt(t.sumaRabat)} <small>-${rabatProcent}% KOD</small></div>`;
+
+        return `<div class="zestaw-card" id="card-${zestaw.id}">
+
+            <!-- NAGLOWEK KARTY (klikalny) -->
+            <button class="zestaw-header" onclick="toggleCard('${zestaw.id}')" aria-expanded="false" aria-controls="scroll-${zestaw.id}">
+                <div class="zestaw-header-left">
+                    <div class="zestaw-icon-wrap">${mainIcon}</div>
+                    <div class="zestaw-title-group">
+                        <span class="zestaw-eyebrow-mini">${zestaw.eyebrow}</span>
+                        <span class="zestaw-name">${zestaw.nazwa}</span>
+                        <span class="zestaw-specs-mini">${zestaw.skrot}</span>
+                    </div>
+                </div>
+                <div class="zestaw-header-right">
+                    <div class="zestaw-price-block">
+                        ${headerPriceLine}
+                    </div>
+                    <i class="fas fa-chevron-down zestaw-chevron"></i>
+                </div>
+            </button>
+
+            <!-- PASEK ROZWIJANIA -->
+            <div class="zestaw-unroll-bar"></div>
+
+            <!-- ROZWIJANA TRESC -->
+            <div class="zestaw-scroll-wrap" id="scroll-${zestaw.id}" role="region">
+                <div class="zestaw-scroll-inner">
+
+                    <!-- KOMPONENTY -->
+                    <div class="zestaw-components-list">
+                        ${rows}
+                    </div>
+
+                    <!-- PODSUMOWANIE -->
+                    <div class="zestaw-summary">
+                        <div class="zestaw-summary-line">
+                            <div class="zestaw-summary-row">
+                                <span>Suma bez kodu:</span>
+                                <span class="total-normal">${fmt(t.sumaCena)}</span>
+                            </div>
+                            <div class="zestaw-summary-row">
+                                <span>Z kodem <strong style="color:#ff1493">ANGELKA</strong>:</span>
+                                <span class="total-discount">${fmt(t.sumaRabat)}</span>
+                            </div>
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-end;">
+                            <div class="zestaw-summary-savings">
+                                <i class="fas fa-piggy-bank"></i>
+                                Oszczedzasz ${fmt(t.oszczednosc)}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PRZYCISK KUPNA -->
+                    <div style="display:flex;flex-direction:column;gap:10px;">
+                        <a href="${zestaw.konfiguratorLink}" class="zestaw-buy-btn" target="_blank" rel="noopener">
+                            <i class="fas fa-shopping-cart"></i>
+                            Kup ten zestaw na Komputronik
+                            <i class="fas fa-external-link-alt" style="font-size:0.8rem; opacity:0.7;"></i>
+                        </a>
+                        <div class="zestaw-howto">
+                            <i class="fas fa-info-circle"></i>
+                            <span>
+                                Kliknij powyzszy przycisk ? zostaniesz przeniesiony do konfiguratora Komputronik
+                                z gotowym zestawem. Przy skladaniu zamówienia wpisz kod <strong style="color:#ff1493">ANGELKA</strong>
+                                i otrzymasz ${rabatProcent}% znizki.
+                            </span>
+                        </div>
+                    </div>
+
+                </div><!-- /.zestaw-scroll-inner -->
+            </div><!-- /.zestaw-scroll-wrap -->
+
+        </div><!-- /.zestaw-card -->`;
+    }
+
+    // =====================================================================
+    //  TOGGLE AKORDEONU
+    // =====================================================================
+    function toggleCard(id) {
+        const card = document.getElementById('card-' + id);
+        const scroll = document.getElementById('scroll-' + id);
+        const btn = card.querySelector('.zestaw-header');
+        const isOpen = card.classList.contains('open');
+
+        if (isOpen) {
+            // zamknij
+            card.classList.remove('open');
+            btn.setAttribute('aria-expanded', 'false');
+            scroll.style.maxHeight = '0';
+        } else {
+            // otwórz (najpierw zamknij wszystkie inne)
+            document.querySelectorAll('.zestaw-card.open').forEach(c => {
+                c.classList.remove('open');
+                c.querySelector('.zestaw-header').setAttribute('aria-expanded', 'false');
+                c.querySelector('.zestaw-scroll-wrap').style.maxHeight = '0';
+            });
+
+            card.classList.add('open');
+            btn.setAttribute('aria-expanded', 'true');
+            // dynamiczna wysokosc: scrollHeight zawartosci
+            scroll.style.maxHeight = scroll.scrollHeight + 'px';
+
+            // scroll do karty z malym opóznieniem
+            setTimeout(() => {
+                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 150);
+        }
+    }
+
+    // =====================================================================
+    //  KOPIUJ KOD RABATOWY
+    // =====================================================================
+    function setupCopyBtn(btn, code) {
+        btn.addEventListener('click', () => {
+            navigator.clipboard.writeText(code).then(() => {
+                const orig = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Skopiowano!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.innerHTML = orig;
+                    btn.classList.remove('copied');
+                }, 2000);
+            }).catch(() => {
+                // fallback
+                const ta = document.createElement('textarea');
+                ta.value = code;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                btn.innerHTML = '<i class="fas fa-check"></i> Skopiowano!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="far fa-copy"></i> Kopiuj';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        });
+    }
+
+    // =====================================================================
+    //  EKRAN LADOWANIA — animacja paska
+    // =====================================================================
+    function animateProgress(targetPct, duration, cb) {
+        const fill = document.getElementById('progressFill');
+        let start = null;
+        const from = parseFloat(fill.style.width) || 0;
+        function step(ts) {
+            if (!start) start = ts;
+            const p = Math.min((ts - start) / duration, 1);
+            fill.style.width = (from + (targetPct - from) * p) + '%';
+            if (p < 1) requestAnimationFrame(step);
+            else if (cb) cb();
+        }
+        requestAnimationFrame(step);
+    }
+
+    function hideLoading() {
+        const ls = document.getElementById('loadingScreen');
+        const mc = document.getElementById('mainContent');
+        ls.classList.add('hidden');
+        mc.style.opacity = '1';
+    }
+
+    // =====================================================================
+    //  GLÓWNA INICJALIZACJA
+    // =====================================================================
+    document.addEventListener('DOMContentLoaded', async () => {
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        animateProgress(40, 300);
+
+        let data;
+        try {
+            const res = await fetch('zestawy.json');
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            data = await res.json();
+        } catch (e) {
+            console.error('Blad ladowania zestawy.json:', e);
+            // awaryjny komunikat
+            document.getElementById('zestawyList').innerHTML =
+                `<div style="text-align:center;color:#ff1493;padding:40px;font-family:'Titillium Web',sans-serif;">
+                    <i class="fas fa-exclamation-triangle" style="font-size:2rem;margin-bottom:12px;display:block;"></i>
+                    Nie mozna zaladowac zestawów. Upewnij sie, ze plik zestawy.json jest dostepny.
+                </div>`;
+            animateProgress(100, 200, hideLoading);
+            return;
+        }
+
+        animateProgress(80, 250);
+
+        const { kodRabatowy, rabatProcent, zestawy } = data;
+
+        // baner kodu
+        const banner = document.getElementById('codeBanner');
+        document.getElementById('bannerCode').textContent = kodRabatowy;
+        document.getElementById('bannerDiscount').textContent =
+            `Wpisz kod przy skladaniu zamówienia i zaoszczedz ${rabatProcent}% na calym zestawie!`;
+        banner.style.display = '';
+
+        setupCopyBtn(document.getElementById('copyBannerBtn'), kodRabatowy);
+
+        // karty zestawów
+        const list = document.getElementById('zestawyList');
+        list.innerHTML = zestawy.map((z, i) => buildCard(z, rabatProcent, i)).join('');
+
+        // Domyslnie otwórz pierwsza karte
+        if (zestawy.length > 0) {
+            const firstId = zestawy[0].id;
+            const firstCard = document.getElementById('card-' + firstId);
+            const firstScroll = document.getElementById('scroll-' + firstId);
+            firstCard.classList.add('open');
+            firstCard.querySelector('.zestaw-header').setAttribute('aria-expanded', 'true');
+            // poczekaj chwile az DOM wyrenderuje wysokosc
+            requestAnimationFrame(() => {
+                firstScroll.style.maxHeight = firstScroll.scrollHeight + 'px';
+            });
+        }
+
+        animateProgress(100, 200, () => {
+            setTimeout(hideLoading, 150);
+        });
+    });
+    </script>
+
+</body>
+</html>
